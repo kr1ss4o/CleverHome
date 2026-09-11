@@ -1,26 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Color properties */
+  --lightpurple: #AE70FF;
+  --darkpurple: #7900C4;
+  --purpleblue: #3E3EFB;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /*  Gradient properties */
+  --purplegradient: linear-gradient(180deg,rgba(27, 27, 204, 1) 0%, rgba(37, 18, 69, 1) 75%);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Shadows */
+  --defaultboxshadow: 0px 0px 15px 0px #000000;
 }

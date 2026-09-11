@@ -1,0 +1,35 @@
+div.homeContainer {
+    padding: 120px 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 160px;
+
+    background: var(--purplegradient);
+}
+
+div.bubblesContainer {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 30px;
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 1270px) {
+    div.homeContainer {
+        padding: 180px 90px;
+    }
+}
+@media only screen and (max-width: 700px) {
+    div.homeContainer {
+        padding: 180px 60px;
+    }
+}

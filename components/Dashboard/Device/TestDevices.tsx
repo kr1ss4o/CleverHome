@@ -1,32 +1,65 @@
+"use client";
+
 import Device from "./Device";
-const testDevices = [
+import { useState } from "react";
+
+const initialDevices = [
     {
         id: 1,
         name: "Living Room Light",
-        state: true
+        state: true,
+        type: "light"
     },
     {
         id: 2,
-        name: "Bedroom Light",
-        state: false
+        name: "Kitchen Fan",
+        state: false,
+        type: "fan"
     },
     {
         id: 3,
-        name: "Kitchen Light",
-        state: true
+        name: "Bedroom Radiator",
+        state: true,
+        type: "radiator"
+    },
+    {
+        id: 4,
+        name: "Main House Thermometer",
+        state: false,
+        type: "thermometer"
     }
 ];
 
 export default function TestDevices() {
     
+    const [devices, setDevices ] = useState(initialDevices);
+
+    function toggleDeviceState(id: number) {
+        setDevices(currentDevices => 
+            currentDevices.map((device) => {
+
+                if (device.id === id) {
+                    return {
+                        ...device,
+                        state: !device.state
+                    }
+                }
+
+                return device;
+            })
+        );
+    }
+
     return (
         <>
-            {testDevices.map((device) => (
+            {devices.map((device) => (
                 <Device
                     key={device.id}
                     deviceID={device.id}
                     deviceName={device.name}
                     deviceState={device.state}
+                    deviceType={device.type}
+                    toggleDevice={toggleDeviceState}
                 />
             ))}
         </>

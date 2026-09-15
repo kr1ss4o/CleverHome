@@ -11,18 +11,18 @@ export default function Home() {
         <Hero />
         <div className="bubblesContainer">
           <Bubble
-            bubbleIcon="/media/icons/GlobeIcon.png"
+            bubbleIcon="/media/icons/globe-icon.png"
             bubbleDescription="Connect from any place in the world with an internet connection."
           />
           <Bubble
-            bubbleIcon="/media/icons/FastIcon.png"
+            bubbleIcon="/media/icons/lightning-icon.png"
             bubbleDescription="Fast and easy connection. Just log in to your account and you're good to go."
           />
           <Bubble
-            bubbleIcon="/media/icons/ShareIcon.png"
+            bubbleIcon="/media/icons/controls-icon.png"
             bubbleDescription="Simple built-in controls make the app accessible to everyone."/>
           <Bubble
-            bubbleIcon="/media/icons/StarIcon.png"
+            bubbleIcon="/media/icons/money-icon.png"
             bubbleDescription="Completely free to use. No hidden fees, no subscriptions."
           />
         </div>

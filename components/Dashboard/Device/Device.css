@@ -1,17 +1,13 @@
 div.deviceContainer {
     width: 100%;
-    height: 500px;
 
     display: flex;
-    flex-wrap: wrap;
 
-    flex-direction: column;
-
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
     gap: 40px;
-    padding: 50px;
+    padding: 50px 100px;
 
     border-radius: 30px;
 
@@ -21,26 +17,124 @@ div.deviceContainer {
 
 div.deviceInfoContainer {
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+.deviceTitle {
+    color: var(--lightpurple);
+    font-weight: 700;
+}
+
+.stateTitle {
+    font-weight: 700;
+}
+.onlineColor {
+   color: rgb(0, 197, 0);
+}
+.offlineColor {
+  color: rgb(204, 9, 9);
+}
+
+div.deviceDisplayContainer {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
     align-items: center;
+
+    gap: 30px;
+}
+
+img.deviceImage {
+    width: 15%;
+    max-width: 15%;
+    min-width: 142px;
+}
+
+div.deviceCustomizeContainer {
+    display: flex;
+    flex-direction: column;
 
     gap: 20px;
 }
 
-h4.idTitle {
-    color: var(--lightpurple);
-    font-weight: 300;
+input.colorInput {
+    width: 100%;
+    height: 200px;
+
+    border-radius: 15px;
+    outline: solid 1px white;
 }
-h1.nameTitle {
-    color: var(--lightpurple);
-    font-weight: 300;  
+input.colorHEX {
+    width: 100%;
+    height: 30px;
+
+    border-radius: 5px;
+    outline: solid 1px white;
+    color: white;
+
+    padding: 0 5px;
+    text-align: center;
 }
-h2.onlineTitle {
-    color: green;
-    font-weight: 700;
+
+/* Toggler button design */
+
+.stateButton {
+    appearance: none;
+
+    width: 60px;
+    height: 34px;
+
+    background: #555;
+    border-radius: 20px;
+
+    cursor: pointer;
+    position: relative;
+
+    transition: 0.3s;
 }
-h2.offlineTitle {
-    color: rgb(195, 45, 45);
-    font-weight: 700;
+
+.stateButton::before {
+    content: "";
+
+    position: absolute;
+
+    width: 26px;
+    height: 26px;
+
+    background: white;
+    border-radius: 50%;
+
+    top: 4px;
+    left: 4px;
+
+    transition: 0.3s;
+}
+
+.stateButton:checked {
+    background: var(--lightpurple);
+}
+
+.stateButton:checked::before {
+    transform: translateX(26px);
+}
+
+/* Responsive design */
+
+@media only screen and (max-width: 995px) {
+    div.deviceContainer {
+        flex-direction: column;
+        width: auto;
+    }
+    div.deviceInfoContainer {
+        align-items: center;
+    }
+    div.deviceDisplayContainer {
+        flex-direction: column-reverse;
+    }
 }

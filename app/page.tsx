@@ -7,7 +7,7 @@ import "@/components/Home/Home.css";
 
 export default function Home() {
   return (
-    <div className="homeContainer">
+    <div className="mainPageContainer">
         <Hero />
         <div className="bubblesContainer">
           <Bubble

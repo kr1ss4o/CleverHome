@@ -17,7 +17,7 @@ export default function Hero() {
                     </span>
                 </h1>
             </div>
-            <CoverImage coverImage="/media/Cover.png" />
+            <CoverImage coverImage="/media/Cover.png"/>
         </div>
     )
 }

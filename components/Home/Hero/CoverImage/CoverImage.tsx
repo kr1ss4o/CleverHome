@@ -1,5 +1,5 @@
 import Image from "next/image";
-import  style from "@/components/Home/Hero/CoverImage/CoverImage";
+import  "@/components/Home/Hero/CoverImage/CoverImage.css";
 
 type CoverImageProps = {
     coverImage: string;
@@ -7,6 +7,6 @@ type CoverImageProps = {
 
 export default function CoverImage({coverImage}: CoverImageProps) {
     return(
-        <Image src={coverImage} alt="Cover Image" className="image" width={1000} height={800}/>
+        <Image src={coverImage} alt="Cover Image" className="image" loading="eager" width={1000} height={800}/>
     )
 }

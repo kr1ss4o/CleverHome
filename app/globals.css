@@ -12,3 +12,20 @@
   /* Shadows */
   --defaultboxshadow: 0px 0px 15px 0px #000000;
 }
+
+body {
+  background: black;
+}
+
+/* Design class for the main page design */
+
+div.mainPageContainer {
+    padding: 120px 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 160px;
+
+    background: var(--purplegradient);
+}

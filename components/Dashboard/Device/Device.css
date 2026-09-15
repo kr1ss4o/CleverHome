@@ -1,0 +1,46 @@
+div.deviceContainer {
+    width: 100%;
+    height: 500px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 40px;
+    padding: 50px;
+
+    border-radius: 30px;
+
+    background: black;
+    color: var(--lightpurple);
+}
+
+div.deviceInfoContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+}
+
+h4.idTitle {
+    color: var(--lightpurple);
+    font-weight: 300;
+}
+h1.nameTitle {
+    color: var(--lightpurple);
+    font-weight: 300;  
+}
+h2.onlineTitle {
+    color: green;
+    font-weight: 700;
+}
+h2.offlineTitle {
+    color: rgb(195, 45, 45);
+    font-weight: 700;
+}

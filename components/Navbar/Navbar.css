@@ -6,11 +6,12 @@ nav.navbarBody {
     align-items: center;
 
     background: black;
-    box-shadow: var(--defaultboxshadow);
+    box-shadow: var(--bottomboxshadow);
 
-    padding: 30px 40px;
+    padding: 25px 40px;
 
     position: fixed;
+    z-index: 100;
 }
 
 div.navbarContent{
@@ -29,4 +30,9 @@ div.mainButtons {
     justify-content: center;
     align-items: center;
     gap: 15px;
+}
+
+img.navIcon {
+    width: 22px;
+    height: 22px;
 }

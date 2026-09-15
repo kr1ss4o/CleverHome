@@ -7,14 +7,14 @@ export default function Navbar() {
             <div className="navbarContent">
                 <div className="mainButtons">
                     <Link href="/">
-                        Home
+                        <img className="navIcon" src="/media/icons/home-icon.png"/>
                     </Link>
                     <Link href="/dashboard">
-                        Dashboard
+                        <img className="navIcon" src="/media/icons/dashboard-icon.png"/>
                     </Link>
                 </div>
                 <Link className="logoutButton" href="/">
-                    Logout
+                    <img className="navIcon" src="/media/icons/logout-icon.png"/>
                 </Link>
             </div>
         </nav>

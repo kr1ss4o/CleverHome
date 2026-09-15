@@ -11,6 +11,7 @@
 
   /* Shadows */
   --defaultboxshadow: 0px 0px 15px 0px #000000;
+  --bottomboxshadow: 0px 1px 0px 0px var(--lightpurple);
 }
 
 body {

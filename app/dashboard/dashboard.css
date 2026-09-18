@@ -1,0 +1,31 @@
+div.dashHead {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    justify-content: center;
+    align-items: center;
+}
+div.devicesContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 50px;
+}
+label.totalDevices {
+    color: rgb(24, 234, 24);
+    font-size: 15px;
+    font-weight: 700;
+}
+button.newDevice {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: var(--lightpurple);
+
+    font-weight: 700;
+    outline: 1px solid var(--darkpurple);
+}

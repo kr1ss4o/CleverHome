@@ -2,7 +2,7 @@
 
 :root {
   /* Color properties */
-  --lightpurple: #AE70FF;
+  --lightpurple: rgb(174, 112, 255);
   --darkpurple: #7900C4;
   --purpleblue: #3E3EFB;
 
@@ -20,13 +20,13 @@ body {
 
 /* Design class for the main page design */
 
-div.mainPageContainer {
+.mainPageContainer {
     padding: 120px 90px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 160px;
+    gap: 50px;
 
     background: var(--purplegradient);
 }

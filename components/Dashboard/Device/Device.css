@@ -56,30 +56,48 @@ img.deviceImage {
     min-width: 142px;
 }
 
-div.deviceCustomizeContainer {
+div.deviceControlsContainer {
     display: flex;
     flex-direction: column;
 
     gap: 20px;
 }
 
+input.deviceValueInput {
+    width: 100%;
+    height: 30px;
+
+    border-radius: 5px;
+    outline: solid 1.5px var(--lightpurple);
+    color: white;
+
+    padding: 0 5px;
+    text-align: center;
+}
+
+/* Light inputs */
+
 input.colorInput {
     width: 100%;
     height: 200px;
 
     border-radius: 15px;
-    outline: solid 1px white;
+    outline: solid 1.5px var(--lightpurple);
 }
-input.colorHEX {
-    width: 100%;
-    height: 30px;
 
-    border-radius: 5px;
-    outline: solid 1px white;
-    color: white;
-
-    padding: 0 5px;
+h1.displayDeviceValue {
     text-align: center;
+    font-size: 19px;
+    font-weight: 700;
+}
+button.deviceApplyButton {
+    width: 100%;
+    outline: solid 1.5px var(--lightpurple);
+    padding: 10px 0;
+    border-radius: 5px;
+    color: var(--lightpurple);
+    font-size: 18px;
+    font-weight: 700;
 }
 
 /* Toggler button design */
@@ -122,6 +140,12 @@ input.colorHEX {
 
 .stateButton:checked::before {
     transform: translateX(26px);
+}
+
+/* Slider input design */
+
+input.inputSlider {
+    accent-color: var(--lightpurple)
 }
 
 /* Responsive design */

@@ -12,8 +12,22 @@ type DeviceProps = {
 }
 
 export default function Device(props: DeviceProps) {
-    
+
+    /* Lights values */
     const [deviceColor, setColor] = useState("#f9fae0");
+
+    /* Fan values  */
+    const [inputRPM, setInputRPM] = useState(0);
+    const [deviceRPM, setDeviceRPM] = useState(350);
+
+    /* Radiator values */
+    const [inputRadiatorTemp, setInputRadiatorTemp] = useState(20);
+    const [deviceRadiatorTemp, setDeviceRadiatorTemp] = useState(20);
+
+
+    /* Thermostat values  */
+    const [inputThermoTemp, setInputThermoTemp] = useState(20);
+    const [deviceThermoTemp, setDeviceThermoTemp] = useState(20);
 
     function getDeviceIcon(deviceType: string) {
         if (props.deviceType === "light") {
@@ -52,20 +66,80 @@ export default function Device(props: DeviceProps) {
                 />
             </div>
             {props.deviceType === "light" && (
-                    <div className="deviceCustomizeContainer">
-                        <input
-                            type="color"
-                            value={deviceColor}
-                            onChange={(e) => setColor(e.target.value)}
-                            className="colorInput"
-                        />
-                        <input
-                            className="colorHEX"
-                            value={deviceColor}
-                            onChange={(e)=> setColor(e.target.value)}
-                        />
-                    </div>
-            )}  
+                <div className="deviceControlsContainer">
+                    <input
+                        type="color"
+                        value={deviceColor}
+                        onChange={(e) => setColor(e.target.value)}
+                        className="colorInput"
+                    />
+                    <input
+                        className="deviceValueInput"
+                        value={deviceColor}
+                        onChange={(e)=> setColor(e.target.value)}
+                    />
+                </div>
+            )}
+            {props.deviceType === "fan" && (
+                <div className="deviceControlsContainer">
+                    <h1 className="displayDeviceValue">
+                        {props.deviceState ? `Current: ${deviceRPM} RPM` : "Current: 0 RPM"}
+                    </h1>
+                    <input
+                        type="range"
+                        min="100"
+                        max="400"
+                        step="50"
+                        onChange={(e)=> setInputRPM(Number(e.target.value))}
+                        className="inputSlider"
+                    />
+                    <h1 className="displayDeviceValue">{inputRPM} RPM</h1>
+                    <button
+                        className="deviceApplyButton"
+                        onClick={() => setDeviceRPM(inputRPM)}
+                    >
+                    Apply
+                    </button>
+                </div>
+            )}
+            { props.deviceType === "radiator" && (
+                <div className="deviceControlsContainer">
+                    <h1 className="displayDeviceValue"> {props.deviceState ? `Current: ${deviceRadiatorTemp} °C` : "Current: 0 °C"}</h1>
+                    <input
+                        type="range"
+                        min="10"
+                        max="30"
+                        onChange={(e)=> setInputRadiatorTemp(Number(e.target.value))}
+                        className="inputSlider"
+                    />
+                    <h1 className="displayDeviceValue">{inputRadiatorTemp} °C</h1>
+                    <button
+                        className="deviceApplyButton"
+                        onClick={() => setDeviceRadiatorTemp(inputRadiatorTemp)}
+                    >
+                    Apply
+                    </button>
+                </div>
+            )}
+            { props.deviceType === "thermostat" && (
+                <div className="deviceControlsContainer">
+                    <h1 className="displayDeviceValue"> {props.deviceState ? `Current: ${deviceThermoTemp} °C` : "Current: 0 °C"} </h1>
+                    <input
+                        type="range"
+                        min="10"
+                        max="30"
+                        onChange={(e)=> setInputThermoTemp(Number(e.target.value))}
+                        className="inputSlider"
+                    />
+                    <h1 className="displayDeviceValue">{inputThermoTemp} °C</h1>
+                    <button
+                        className="deviceApplyButton"
+                        onClick={() => setDeviceThermoTemp(inputThermoTemp)}
+                    >
+                    Apply
+                    </button>
+                </div>
+            )}
         </div>
     )
 }

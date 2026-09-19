@@ -22,7 +22,7 @@ div.deviceInfoContainer {
     justify-content: center;
     align-items: flex-start;
 
-    gap: 10px;
+    gap: 15px;
 }
 
 .deviceTitle {
@@ -38,6 +38,27 @@ div.deviceInfoContainer {
 }
 .offlineColor {
   color: rgb(243, 68, 68);
+}
+div.manageDevice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+button.editDevice {
+    padding: 10px 15px;
+    background: var(--lightpurple);
+    border-radius: 20px;
+}
+button.deleteDevice {
+    padding: 10px 15px;
+    background: rgb(243, 68, 68);
+    border-radius: 20px;
+}
+img.buttonIcon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 div.deviceDisplayContainer {

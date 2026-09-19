@@ -4,30 +4,31 @@ import { useState } from "react";
 
 import "@/app/dashboard/dashboard.css";
 import NewDevice from "@/components/Dashboard/Modals/NewDevice";
+import EditDevice from "@/components/Dashboard/Modals/EditDevice";
 import Device from "@/components/Dashboard/Device/Device";
 
 const initialDevices = [
     {
         id: 1,
-        name: "",
+        name: "Kitchen Light",
         state: false,
         type: "light"
     },
     {
         id: 2,
-        name: "",
+        name: "Bedroom Ceiling Fan",
         state: false,
         type: "fan"
     },
     {
         id: 3,
-        name: "",
+        name: "Kids' Radiator",
         state: false,
         type: "radiator"
     },
     {
         id: 5,
-        name: "",
+        name: "Home Thermostat",
         state: false,
         type: "thermostat"
     },
@@ -35,13 +36,17 @@ const initialDevices = [
 
 export default function Dashboard() {
 
-    // 1. Devices state
+    // Devices state
     const [devices, setDevices] = useState(initialDevices);
 
-    // 2. Modal state
+    // New device modal state
     const [showNewDevice, setShowNewDevice] = useState(false);
 
-    // 3. Function for changing a device's state
+    // Edit modal gets the deviceID
+    const [editingDeviceID, setEditingDeviceID] = useState<number | null>(null);
+    const [editingDeviceName, setEditingDeviceName] = useState("");
+
+    // Function for changing a device's state
     function toggleDeviceState(id: number) {
         setDevices(currentDevices =>
             currentDevices.map((device) => {
@@ -57,7 +62,7 @@ export default function Dashboard() {
             }))
     }
 
-    // 4. Function for adding a device
+    // Function for adding a device
 
     function addDevice(name: string, type: string) {
 
@@ -75,6 +80,44 @@ export default function Dashboard() {
         ])
         
         setShowNewDevice(false);
+    }
+
+    // Function for editing a device
+
+    function editDeviceName(id: number, newName: string) {
+        setDevices(currentDevices =>
+            currentDevices.map((device) => {
+                if (device.id === id) {
+                    return {
+                        ...device,
+                        name: newName
+                    }
+                }
+
+                return device;
+            }))
+        
+        setEditingDeviceID(null);
+    }
+
+    // Function for receiving the id of the device being edited
+
+    function openEditModal(id: number) {
+        setEditingDeviceID(id);
+    }
+
+    // Function for receiving the name of the device being edited
+
+    function currentDeviceName(currentName: string) {
+        setEditingDeviceName(currentName);
+    }
+
+    // Function for deleting a device
+
+    function deleteDevice(deleteID: number) {
+        setDevices(currentDevices => 
+            currentDevices.filter((device) => device.id !== deleteID)
+        )
     }
 
     return (
@@ -108,6 +151,9 @@ export default function Dashboard() {
                         deviceState={device.state}
                         deviceType={device.type}
                         toggleDevice={toggleDeviceState}
+                        openEditModal={openEditModal}
+                        currentDeviceName={currentDeviceName}
+                        deleteDevice={deleteDevice}
                     />
                 ))}
 
@@ -121,6 +167,18 @@ export default function Dashboard() {
                     addDevice={addDevice}
                 />
             )}
+            
+            {/* Edit Device modal */}
+            {editingDeviceID !== null && (
+                <EditDevice
+                    deviceID={editingDeviceID}
+                    deviceName={editingDeviceName}
+                    editDeviceName={editDeviceName}
+                    close={() => setEditingDeviceID(null)}
+                />
+            )
+                
+            }
 
         </main>
     );

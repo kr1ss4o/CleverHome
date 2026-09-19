@@ -9,6 +9,9 @@ type DeviceProps = {
     deviceState: boolean;
     deviceType: string;
     toggleDevice: (id: number) => void;
+    openEditModal: (id: number) => void;
+    currentDeviceName: (name: string) => void;
+    deleteDevice: (id: number) => void;
 }
 
 export default function Device(props: DeviceProps) {
@@ -28,6 +31,7 @@ export default function Device(props: DeviceProps) {
     /* Thermostat values  */
     const [inputThermoTemp, setInputThermoTemp] = useState(20);
     const [deviceThermoTemp, setDeviceThermoTemp] = useState(20);
+
 
     function getDeviceIcon(deviceType: string) {
         if (props.deviceType === "light") {
@@ -54,15 +58,26 @@ export default function Device(props: DeviceProps) {
             <div className="deviceInfoContainer">
                 <h4 className="deviceTitle">Device ID: {props.deviceID}</h4>
                 <h1 className="deviceTitle">{props.deviceName}</h1>
-                <h2 className={stateClass+" stateTitle"}>{props.deviceState ? "Online" : "Offline"}</h2>  
+                <h2 className={stateClass+" stateTitle"}>{props.deviceState ? "Online" : "Offline"}</h2>
+                <div className="manageDevice">
+                    <button className="editDevice" onClick={() => {
+                        props.openEditModal(props.deviceID);
+                        props.currentDeviceName(props.deviceName);
+                    }}>
+                        <img className="buttonIcon" src="/media/icons/edit-icon.png"/>
+                    </button>
+                    <button className="deleteDevice" onClick={()=> props.deleteDevice(props.deviceID)}>
+                        <img className="buttonIcon" src="/media/icons/delete-icon.png"/>
+                    </button>
+                </div>  
             </div>
             <div className="deviceDisplayContainer">
                 <img src={deviceIcon} className="deviceImage" />
                 <input
-                        type="checkbox"
-                        checked={props.deviceState}
-                        onChange={() => props.toggleDevice(props.deviceID)}
-                        className="stateButton"
+                    type="checkbox"
+                    checked={props.deviceState}
+                    onChange={() => props.toggleDevice(props.deviceID)}
+                    className="stateButton"
                 />
             </div>
             {props.deviceType === "light" && (

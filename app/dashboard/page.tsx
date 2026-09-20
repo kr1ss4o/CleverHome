@@ -1,43 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "@/app/dashboard/dashboard.css";
 import NewDevice from "@/components/Dashboard/Modals/NewDevice";
 import EditDevice from "@/components/Dashboard/Modals/EditDevice";
-import Device from "@/components/Dashboard/Device/Device";
-
-const initialDevices = [
-    {
-        id: 1,
-        name: "Kitchen Light",
-        state: false,
-        type: "light"
-    },
-    {
-        id: 2,
-        name: "Bedroom Ceiling Fan",
-        state: false,
-        type: "fan"
-    },
-    {
-        id: 3,
-        name: "Kids' Radiator",
-        state: false,
-        type: "radiator"
-    },
-    {
-        id: 5,
-        name: "Home Thermostat",
-        state: false,
-        type: "thermostat"
-    },
-];
+import DeviceCard from "@/components/Dashboard/Device/DeviceCard";
 
 export default function Dashboard() {
 
-    // Devices state
-    const [devices, setDevices] = useState(initialDevices);
+    type Device = {
+        id: number;
+        name: string;
+        state: boolean;
+        type: string;
+        color: string | null;
+        rpm: number | null;
+        temperature: number | null;
+    };
+
+    // Devices' state receive an array of Device object
+    const [devices, setDevices] = useState<Device[]>([]);
+
+    // Dashboard loads the devices
+    useEffect(() => {
+        async function getDevices() {
+            const response = await fetch("/api/devices");
+            const data = await response.json();
+
+            // Sort the devices by ID
+            const sortedDevices = [...data].sort((a, b) => a.id - b.id);
+            setDevices(sortedDevices);
+        }
+        getDevices();
+    }, []);
 
     // New device modal state
     const [showNewDevice, setShowNewDevice] = useState(false);
@@ -47,76 +43,138 @@ export default function Dashboard() {
     const [editingDeviceName, setEditingDeviceName] = useState("");
 
     // Function for changing a device's state
-    function toggleDeviceState(id: number) {
+    async function toggleDeviceState(id: number) {
+
+        const device = devices.find(device => device.id === id);
+
+        if (!device) {
+            return;
+        }
+
+        const response = await fetch("/api/devices", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: id,
+                state: !device.state
+            })
+        });
+
+        const updatedDevice = await response.json();
+
         setDevices(currentDevices =>
-            currentDevices.map((device) => {
+            currentDevices.map(device =>
+                device.id === updatedDevice.id
+                    ? updatedDevice
+                    : device
+            )
+        );
+    }
 
-                if (device.id === id) {
-                    return {
-                        ...device,
-                        state: !device.state
-                    }
-                }
+    async function updateDeviceValue( id: number, valueType: "rpm" | "temperature", value: number) {
+        const response = await fetch("/api/devices", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: id,
+                [valueType]: value
+            })
+        });
 
-                return device;
-            }))
+        const updatedDevice = await response.json();
+
+        setDevices(currentDevices =>
+            currentDevices.map(device =>
+                device.id === updatedDevice.id
+                    ? updatedDevice
+                    : device
+            )
+        );
     }
 
     // Function for adding a device
+    async function addDevice(name: string, type: string) {
 
-    function addDevice(name: string, type: string) {
+        const response = await fetch("/api/devices", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                    name: name,
+                    type: type
+            })
+        });
 
-        const newDevice = {
-            id: devices.length === 0
-                ? 1
-                : Math.max(...devices.map(device => device.id)) + 1,
-            name: name,
-            state: false,
-            type: type
-        };
+        const newDevice = await response.json();
+
         setDevices(currentDevices => [
             ...currentDevices,
             newDevice
-        ])
-        
+        ]);
+
         setShowNewDevice(false);
     }
 
     // Function for editing a device
+    async function editDeviceName(id: number, newName: string) {
+        
+        const response = await fetch("/api/devices", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: id,
+                name: newName
+            })
+        })
 
-    function editDeviceName(id: number, newName: string) {
-        setDevices(currentDevices =>
-            currentDevices.map((device) => {
-                if (device.id === id) {
-                    return {
-                        ...device,
-                        name: newName
-                    }
+        const updatedDevice = await response.json();
+
+        setDevices(current =>
+            current.map((device) => {
+                if (device.id === updatedDevice.id) {
+                    return updatedDevice;
                 }
 
                 return device;
-            }))
-        
+            })
+        )
+
         setEditingDeviceID(null);
     }
 
     // Function for receiving the id of the device being edited
-
     function openEditModal(id: number) {
         setEditingDeviceID(id);
     }
 
     // Function for receiving the name of the device being edited
-
     function currentDeviceName(currentName: string) {
         setEditingDeviceName(currentName);
     }
 
     // Function for deleting a device
+    async function deleteDevice(deleteID: number) {
+        const response = await fetch("/api/devices", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: deleteID
+            })
+        })
 
-    function deleteDevice(deleteID: number) {
-        setDevices(currentDevices => 
-            currentDevices.filter((device) => device.id !== deleteID)
+        const deletedDevice = await response.json();
+
+        setDevices(current =>
+            current.filter((device) => device.id !== deletedDevice.id)
         )
     }
 
@@ -144,17 +202,20 @@ export default function Dashboard() {
             <div className="devicesContainer">
 
                 {devices.map((device) => (
-                    <Device
+                    <DeviceCard
                         key={device.id}
                         deviceID={device.id}
                         deviceName={device.name}
                         deviceState={device.state}
                         deviceType={device.type}
+                        deviceRPM={device.rpm}
+                        deviceTemperature={device.temperature}
                         toggleDevice={toggleDeviceState}
+                        updateDeviceValue={updateDeviceValue}
                         openEditModal={openEditModal}
                         currentDeviceName={currentDeviceName}
                         deleteDevice={deleteDevice}
-                    />
+                    />                  
                 ))}
 
             </div>

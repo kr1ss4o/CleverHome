@@ -1,0 +1,10 @@
+model Device {
+    id          Int     @id @default(autoincrement())
+    name        String
+    state       Boolean @default(false)
+    type        String
+
+    color       String?
+    rpm         Int?
+    temperature Float?
+}

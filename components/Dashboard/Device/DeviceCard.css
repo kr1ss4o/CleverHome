@@ -16,6 +16,7 @@ div.deviceContainer {
 }
 
 div.deviceInfoContainer {
+    max-width: 150px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

@@ -16,7 +16,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="footerCopyright">
-                <img src="/media/icons/CleverHomeLogo.png" alt="CleverHome Logo" />
+                <img src="/media/icons/ch-icon.png" alt="CleverHome Logo" className="icon"/>
                 <p>© 2026 All rights reserved</p>
             </div>
         </footer>

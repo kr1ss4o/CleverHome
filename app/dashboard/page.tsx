@@ -73,6 +73,7 @@ export default function Dashboard() {
         );
     }
 
+    // Function for updating the value of a device (rpm or temperature value)
     async function updateDeviceValue( id: number, valueType: "rpm" | "temperature", value: number) {
         const response = await fetch("/api/devices", {
             method: "PUT",

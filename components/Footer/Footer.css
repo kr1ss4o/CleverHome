@@ -31,6 +31,11 @@ h1.contentTitle {
 p {
     color: var(--lightpurple);
 }
+img.icon {
+    max-width: 60px;
+    height: auto;
+    object-fit: contain;
+}
 
 /* Responsive design */
 

@@ -1,24 +1,31 @@
-div.bubblesContainer {
-    width: 100%;
-
-    display: flex;
-    flex-wrap: wrap;
-
-    justify-content: center;
-    align-items: center;
-
-    gap: 30px;
+/* Home page spacing and feature grid */
+main.mainPageContainer.homeContainer {
+    min-height: 100dvh;
+    padding: 160px 90px 72px;
+    gap: 64px;
 }
 
-/* Responsive */
+.homeContainer .bubblesContainer {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    width: min(100%, 1200px);
+}
 
-@media only screen and (max-width: 1270px) {
-    div.homeContainer {
-        padding: 180px 90px;
+@media (max-width: 1100px) {
+    .homeContainer .bubblesContainer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
-@media only screen and (max-width: 700px) {
-    div.homeContainer {
-        padding: 180px 60px;
+
+@media (max-width: 640px) {
+    main.mainPageContainer.homeContainer {
+        padding: 116px 20px 40px;
+        gap: 40px;
+    }
+
+    .homeContainer .bubblesContainer {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
     }
 }

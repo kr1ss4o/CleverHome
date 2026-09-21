@@ -1,0 +1,292 @@
+/* Page layout */
+main.mainPageContainer.accountContainer {
+    min-height: 100dvh;
+    padding: 118px 30px 60px;
+    gap: 0;
+    align-items: center;
+}
+
+/* Main glass panel */
+.accountContainer .accountWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: min(100%, 950px);
+    min-width: 0;
+    padding: 48px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* Sections */
+.accountContainer .accountSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+}
+
+.accountContainer .accountSection + .accountSection {
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accountContainer .sectionHeading {
+    margin: 0;
+    color: var(--lightpurple);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Personalization */
+.accountContainer .profileHeader,
+.accountContainer .profileActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.accountContainer .profileHeader {
+    justify-content: space-between;
+}
+
+.accountContainer .profileActions {
+    justify-content: flex-end;
+}
+
+.accountContainer .profileButton {
+    min-height: 44px;
+    padding: 10px 18px;
+    background: rgba(174, 112, 255, 0.08);
+    color: var(--lightpurple);
+    border: 1px solid rgba(174, 112, 255, 0.4);
+    border-radius: 10px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.accountContainer .profileButton:hover {
+    background: rgba(174, 112, 255, 0.16);
+}
+
+.accountContainer .profileSaveButton {
+    background: var(--lightpurple);
+    color: black;
+}
+
+.accountContainer .profileSaveButton:hover {
+    background: var(--darkpurple);
+    color: white;
+}
+
+.accountContainer .profileButton:focus-visible {
+    outline: 2px solid var(--lightpurple);
+    outline-offset: 4px;
+}
+
+.accountContainer .accountInput[readonly] {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+.accountContainer .wrapper {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    align-items: center;
+    gap: 40px;
+}
+
+.accountContainer .accountIcon {
+    width: 150px;
+    height: 150px;
+    background: rgba(174, 112, 255, 0.08);
+    border: 1px solid rgba(174, 112, 255, 0.5);
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(174, 112, 255, 0.08);
+}
+
+/* Fields */
+.accountContainer .personalizationInputs,
+.accountContainer .inputGroup {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.accountContainer .personalizationInputs {
+    gap: 18px;
+}
+
+.accountContainer .inputGroup {
+    gap: 8px;
+}
+
+.accountContainer .inputLabel {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.accountContainer .accountInput {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    outline: none;
+    font: inherit;
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.accountContainer .accountInput::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.accountContainer .accountInput:focus {
+    background: rgba(174, 112, 255, 0.05);
+    border-color: var(--lightpurple);
+    box-shadow: 0 0 0 3px rgba(174, 112, 255, 0.1);
+}
+
+/* Security and actions */
+.accountContainer .aboutInputs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.accountContainer .passwordButton,
+.accountContainer .deleteButton {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.accountContainer .passwordButton {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(100%, 300px);
+    background: var(--lightpurple);
+    color: black;
+    border: 1px solid transparent;
+}
+
+.accountContainer .passwordButton:hover {
+    background: var(--darkpurple);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.accountContainer .passwordButton:focus-visible,
+.accountContainer .deleteButton:focus-visible {
+    outline: 2px solid var(--lightpurple);
+    outline-offset: 4px;
+}
+
+/* Danger zone */
+.accountContainer .accountSection.dangerSection {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+    border-top-color: rgba(194, 18, 18, 0.2);
+}
+
+.accountContainer .dangerHeading {
+    grid-column: 1 / -1;
+    color: rgb(220, 70, 70);
+}
+
+.accountContainer .dangerLabel {
+    color: rgba(220, 70, 70, 0.8);
+}
+
+.accountContainer .dangerInput {
+    color: rgb(220, 70, 70);
+    border-color: rgba(194, 18, 18, 0.35);
+}
+
+.accountContainer .dangerInput:focus {
+    background: rgba(194, 18, 18, 0.05);
+    border-color: rgb(194, 18, 18);
+    box-shadow: 0 0 0 3px rgba(194, 18, 18, 0.1);
+}
+
+.accountContainer .deleteButton {
+    background: rgba(194, 18, 18, 0.1);
+    color: rgb(220, 70, 70);
+    border: 1px solid rgba(194, 18, 18, 0.4);
+}
+
+.accountContainer .deleteButton:hover {
+    background: rgb(194, 18, 18);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.accountContainer .deleteButton:focus-visible {
+    outline-color: rgb(220, 70, 70);
+}
+
+/* Compact layout */
+@media (max-width: 640px) {
+    main.mainPageContainer.accountContainer {
+        padding: 94px 16px 32px;
+    }
+
+    .accountContainer .accountWrapper {
+        gap: 32px;
+        padding: 24px;
+    }
+
+    .accountContainer .wrapper,
+    .accountContainer .aboutInputs,
+    .accountContainer .accountSection.dangerSection {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .accountContainer .accountIcon {
+        justify-self: center;
+        width: 120px;
+        height: 120px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .accountContainer .accountInput,
+    .accountContainer .passwordButton,
+    .accountContainer .deleteButton {
+        transition: none;
+    }
+
+    .accountContainer .passwordButton:hover,
+    .accountContainer .deleteButton:hover {
+        transform: none;
+    }
+}

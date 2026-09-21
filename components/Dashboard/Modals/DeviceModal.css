@@ -1,0 +1,169 @@
+/* Shared add/edit device dialog styling */
+.deviceModalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.7);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.deviceModalOverlay .modal {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: min(100%, 520px);
+    max-height: calc(100dvh - 48px);
+    overflow-y: auto;
+    padding: 36px;
+    background: linear-gradient(160deg, rgba(49, 32, 76, 0.96), rgba(22, 17, 35, 0.96));
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.deviceModalOverlay .title {
+    margin: 0;
+    padding-bottom: 24px;
+    color: var(--lightpurple);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.deviceModalOverlay .groupContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.deviceModalOverlay .inputLabel {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.deviceModalOverlay .nameInput,
+.deviceModalOverlay .dropdown {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    outline: none;
+    font: inherit;
+    font-size: 16px;
+    color-scheme: dark;
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.deviceModalOverlay .nameInput::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.deviceModalOverlay .dropdown {
+    cursor: pointer;
+}
+
+.deviceModalOverlay .dropdown option {
+    background: #21182f;
+    color: white;
+}
+
+.deviceModalOverlay .nameInput:focus,
+.deviceModalOverlay .dropdown:focus {
+    background: rgba(174, 112, 255, 0.05);
+    border-color: var(--lightpurple);
+    box-shadow: 0 0 0 3px rgba(174, 112, 255, 0.1);
+}
+
+.deviceModalOverlay .buttonsContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.deviceModalOverlay .addButton,
+.deviceModalOverlay .cancelButton {
+    min-height: 48px;
+    padding: 12px 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.deviceModalOverlay .addButton {
+    background: var(--lightpurple);
+    color: black;
+}
+
+.deviceModalOverlay .addButton:hover {
+    background: var(--darkpurple);
+    color: white;
+}
+
+.deviceModalOverlay .cancelButton {
+    background: rgba(174, 112, 255, 0.08);
+    color: var(--lightpurple);
+    border-color: rgba(174, 112, 255, 0.4);
+}
+
+.deviceModalOverlay .cancelButton:hover {
+    background: rgba(174, 112, 255, 0.16);
+}
+
+.deviceModalOverlay .addButton:focus-visible,
+.deviceModalOverlay .cancelButton:focus-visible {
+    outline: 2px solid var(--lightpurple);
+    outline-offset: 4px;
+}
+
+@media (max-width: 480px) {
+    .deviceModalOverlay {
+        padding: 16px;
+    }
+
+    .deviceModalOverlay .modal {
+        max-height: calc(100dvh - 32px);
+        padding: 24px;
+    }
+
+    .deviceModalOverlay .buttonsContainer {
+        flex-direction: column;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .deviceModalOverlay .nameInput,
+    .deviceModalOverlay .dropdown,
+    .deviceModalOverlay .addButton,
+    .deviceModalOverlay .cancelButton {
+        transition: none;
+    }
+}

@@ -1,21 +1,25 @@
 nav.navbarBody {
-    width: 100%;
-    height: 70px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    z-index: 100;
+    transform: translateX(-50%);
+    width: calc(100% - 180px);
+    height: 60px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     background: black;
-    box-shadow: var(--bottomboxshadow);
+    border-radius: 999px;
+    padding: 8px 18px;
 
-    padding: 25px 40px;
-
-    position: fixed;
-    z-index: 100;
+    border: 0.5px solid var(--lightpurple);
 }
 
-div.navbarContent{
+.navbarBody .navbarContent {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -26,11 +30,24 @@ div.navbarContent{
     font-weight: 700;
 }
 
-div.mainButtons {
+.navbarBody .groupButtons {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 2px;
+}
+
+.navbarBody .groupButtons a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+}
+
+.navbarBody .groupButtons a:focus-visible {
+    outline: 2px solid var(--purpleblue);
+    outline-offset: 2px;
 }
 
 img.navIcon {
@@ -42,4 +59,12 @@ img.navIcon {
 
 img.navIcon:hover {
     transform: translateY(-5px);
+}
+
+@media (max-width: 640px) {
+    nav.navbarBody {
+        top: 20px;
+        width: calc(100% - 32px);
+        padding-inline: 12px;
+    }
 }

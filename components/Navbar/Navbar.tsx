@@ -5,7 +5,7 @@ export default function Navbar() {
     return(
         <nav className="navbarBody">
             <div className="navbarContent">
-                <div className="mainButtons">
+                <div className="groupButtons">
                     <Link href="/">
                         <img className="navIcon" src="/media/icons/home-icon.png"/>
                     </Link>
@@ -13,9 +13,17 @@ export default function Navbar() {
                         <img className="navIcon" src="/media/icons/dashboard-icon.png"/>
                     </Link>
                 </div>
-                <Link className="logoutButton" href="/">
-                    <img className="navIcon" src="/media/icons/logout-icon.png"/>
-                </Link>
+                <div className="groupButtons">
+                    <Link href="/account">
+                        <img className="navIcon" src="/media/icons/account-icon.png"/>
+                    </Link>
+                    <Link href="/">
+                        <img className="navIcon" src="/media/icons/logout-icon.png"/>
+                    </Link>
+                    <Link href="/auth/login">
+                        <img className="navIcon" src="/media/icons/login-icon.png"/>
+                    </Link>
+                </div>
             </div>
         </nav>
     )

@@ -1,13 +1,11 @@
-import Navbar from "@/components/Navbar/Navbar";
 import Hero from "@/components/Home/Hero/Hero";
 import Bubble from "@/components/Home/Bubble/Bubble";
-import Footer from "@/components/Footer/Footer";
 
 import "@/components/Home/Home.css";
 
 export default function Home() {
   return (
-    <div className="mainPageContainer">
+    <main className="mainPageContainer homeContainer">
         <Hero />
         <div className="bubblesContainer">
           <Bubble
@@ -26,6 +24,6 @@ export default function Home() {
             bubbleDescription="Completely free to use. No hidden fees, no subscriptions."
           />
         </div>
-    </div>
+    </main>
   )
 }

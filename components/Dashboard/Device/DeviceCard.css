@@ -1,186 +1,298 @@
-div.deviceContainer {
-    width: 100%;
-
-    display: flex;
-
-    justify-content: space-between;
+/* Glass device card */
+.deviceContainer {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 180px minmax(0, 1fr);
     align-items: center;
-
-    gap: 40px;
-    padding: 50px 100px;
-
-    border-radius: 30px;
-
-    background: black;
-    color: var(--lightpurple);
-}
-
-div.deviceInfoContainer {
-    max-width: 150px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-
-    gap: 15px;
-}
-
-.deviceTitle {
-    color: var(--lightpurple);
-    font-weight: 700;
-}
-
-.stateTitle {
-    font-weight: 700;
-}
-.onlineColor {
-   color: rgb(0, 197, 0);
-}
-.offlineColor {
-  color: rgb(243, 68, 68);
-}
-div.manageDevice {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-button.editDevice {
-    padding: 10px 15px;
-    background: var(--lightpurple);
-    border-radius: 20px;
-}
-button.deleteDevice {
-    padding: 10px 15px;
-    background: rgb(243, 68, 68);
-    border-radius: 20px;
-}
-img.buttonIcon {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-}
-
-div.deviceDisplayContainer {
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    gap: 30px;
-}
-
-img.deviceImage {
-    width: 15%;
-    max-width: 15%;
-    min-width: 142px;
-}
-
-div.deviceControlsContainer {
-    display: flex;
-    flex-direction: column;
-
-    gap: 20px;
-}
-
-input.deviceValueInput {
+    gap: 32px;
     width: 100%;
-    height: 30px;
-
-    border-radius: 5px;
-    outline: solid 1.5px var(--lightpurple);
+    min-width: 0;
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.04);
     color: white;
-
-    padding: 0 5px;
-    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
-/* Light inputs */
-
-input.colorInput {
-    width: 100%;
-    height: 200px;
-
-    border-radius: 15px;
-    outline: solid 1.5px var(--lightpurple);
+.deviceContainer .deviceInfoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    min-width: 0;
 }
 
-h1.displayDeviceValue {
-    text-align: center;
-    font-size: 19px;
-    font-weight: 700;
-}
-button.deviceApplyButton {
-    width: 100%;
-    outline: solid 1.5px var(--lightpurple);
-    padding: 10px 0;
-    border-radius: 5px;
+.deviceContainer .deviceTitle {
+    margin: 0;
+    overflow-wrap: anywhere;
     color: var(--lightpurple);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
+    line-height: 1.4;
 }
 
-/* Toggler button design */
+.deviceContainer h4.deviceTitle {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    font-weight: 600;
+}
 
-.stateButton {
+.deviceContainer .stateTitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.deviceContainer .stateTitle::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background: currentColor;
+    border-radius: 50%;
+}
+
+.deviceContainer .onlineColor {
+    color: #7cdda9;
+}
+
+.deviceContainer .offlineColor {
+    color: #f68b8b;
+}
+
+.deviceContainer .manageDevice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.deviceContainer .editDevice,
+.deviceContainer .deleteDevice {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 12px;
+    border: 1px solid rgba(174, 112, 255, 0.4);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.deviceContainer .editDevice {
+    background: rgba(174, 112, 255, 0.16);
+}
+
+.deviceContainer .deleteDevice {
+    background: rgba(194, 18, 18, 0.16);
+    border-color: rgba(220, 70, 70, 0.4);
+}
+
+.deviceContainer .editDevice:hover {
+    background: rgba(174, 112, 255, 0.3);
+}
+
+.deviceContainer .deleteDevice:hover {
+    background: rgba(194, 18, 18, 0.3);
+}
+
+.deviceContainer .buttonIcon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* Device illustration and power */
+.deviceContainer .deviceDisplayContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    min-width: 0;
+}
+
+.deviceContainer .deviceImage {
+    box-sizing: border-box;
+    width: 142px;
+    height: 142px;
+    max-width: 100%;
+    padding: 20px;
+    object-fit: contain;
+    background: rgba(174, 112, 255, 0.08);
+    border: 1px solid rgba(174, 112, 255, 0.2);
+    border-radius: 24px;
+}
+
+.deviceContainer .stateButton {
     appearance: none;
-
+    position: relative;
+    flex-shrink: 0;
     width: 60px;
     height: 34px;
-
-    background: #555;
+    margin: 0;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-
     cursor: pointer;
-    position: relative;
-
-    transition: 0.3s;
+    transition: background 0.2s ease;
 }
 
-.stateButton::before {
+.deviceContainer .stateButton::before {
     content: "";
-
     position: absolute;
-
-    width: 26px;
-    height: 26px;
-
-    background: white;
-    border-radius: 50%;
-
     top: 4px;
     left: 4px;
-
-    transition: 0.3s;
+    width: 26px;
+    height: 26px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
 }
 
-.stateButton:checked {
+.deviceContainer .stateButton:checked {
     background: var(--lightpurple);
 }
 
-.stateButton:checked::before {
+.deviceContainer .stateButton:checked::before {
     transform: translateX(26px);
 }
 
-/* Slider input design */
-
-input.inputSlider {
-    accent-color: var(--lightpurple)
+/* Device settings */
+.deviceContainer .deviceControlsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+    padding-left: 32px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Responsive design */
+.deviceContainer .deviceValueInput {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    font: inherit;
+    font-size: 16px;
+    text-align: center;
+}
 
-@media only screen and (max-width: 995px) {
-    div.deviceContainer {
-        flex-direction: column;
-        width: auto;
+.deviceContainer .colorInput {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 96px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.deviceContainer .colorInput::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.deviceContainer .colorInput::-webkit-color-swatch {
+    border: 0;
+    border-radius: 6px;
+}
+
+.deviceContainer .colorInput::-moz-color-swatch {
+    border: 0;
+    border-radius: 6px;
+}
+
+.deviceContainer .displayDeviceValue {
+    margin: 0;
+    color: var(--lightpurple);
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.deviceContainer .displayDeviceValue:first-child {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.deviceContainer .inputSlider {
+    width: 100%;
+    min-width: 0;
+    height: 24px;
+    margin: 0;
+    accent-color: var(--lightpurple);
+    cursor: pointer;
+}
+
+.deviceContainer .deviceApplyButton {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 20px;
+    background: var(--lightpurple);
+    color: black;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.deviceContainer .deviceApplyButton:hover {
+    background: var(--darkpurple);
+    color: white;
+}
+
+.deviceContainer button:focus-visible,
+.deviceContainer input:focus-visible {
+    outline: 2px solid var(--lightpurple);
+    outline-offset: 4px;
+}
+
+/* Keep the controls comfortable on narrow screens */
+@media (max-width: 760px) {
+    .deviceContainer {
+        grid-template-columns: minmax(0, 1fr) 142px;
+        gap: 24px;
+        padding: 24px;
     }
-    div.deviceInfoContainer {
+
+    .deviceContainer .deviceControlsContainer {
+        grid-column: 1 / -1;
+        padding-top: 24px;
+        padding-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 0;
+    }
+}
+
+@media (max-width: 420px) {
+    .deviceContainer {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 20px;
+    }
+
+    .deviceContainer .deviceInfoContainer {
         align-items: center;
+        text-align: center;
     }
-    div.deviceDisplayContainer {
-        flex-direction: column-reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .deviceContainer .stateButton,
+    .deviceContainer .stateButton::before {
+        transition: none;
     }
 }

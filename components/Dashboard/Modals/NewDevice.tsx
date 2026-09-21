@@ -14,12 +14,13 @@ export default function NewDevice({close, addDevice}: NewDeviceProps) {
     const [deviceType, setDeviceType] = useState("light");
 
     return(
-        <div className="modalOverlay">
+        <div className="deviceModalOverlay">
             <div className="modal">
                 <h1 className="title">Add a new device</h1>
             <div className="groupContainer">
-                <label className="inputLabel">Device name:</label>
+                <label htmlFor="new-device-name" className="inputLabel">Device name:</label>
                 <input
+                    id="new-device-name"
                     placeholder="Bedroom light"
                     value={deviceName}
                     onChange={(e) => setDeviceName(e.target.value)}
@@ -27,8 +28,9 @@ export default function NewDevice({close, addDevice}: NewDeviceProps) {
                 />
             </div>
             <div className="groupContainer">
-                <label className="inputLabel">Device type:</label>
+                <label htmlFor="new-device-type" className="inputLabel">Device type:</label>
                 <select
+                    id="new-device-type"
                     value={deviceType}
                     onChange={(e) => setDeviceType(e.target.value)}
                     className="dropdown"
@@ -40,8 +42,8 @@ export default function NewDevice({close, addDevice}: NewDeviceProps) {
                 </select>
             </div>
             <div className="buttonsContainer">
-                <button onClick={() => addDevice(deviceName, deviceType)} className="addButton">Add device</button>
                 <button onClick={close} className="cancelButton">Cancel</button>
+                <button onClick={() => addDevice(deviceName, deviceType)} className="addButton">Add device</button>
             </div>
             </div>
         </div>

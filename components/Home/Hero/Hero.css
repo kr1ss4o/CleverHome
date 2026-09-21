@@ -1,65 +1,66 @@
-div.heroContainer {
-    width: 100%;
-
-    display: flex;
-
-    justify-content: space-between;
+.homeContainer .heroContainer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: center;
+    gap: 48px;
+    width: min(100%, 1200px);
 }
 
-div.heroTextContainer {
-    width: 50%;
+.homeContainer .heroTextContainer {
     display: flex;
     flex-direction: column;
-
-    justify-content: center;
     align-items: flex-start;
+    gap: 20px;
+    min-width: 0;
 }
 
-h1.heroTitle {
-    font-size: 50px;
+.homeContainer .heroTitle {
+    margin: 0;
+    color: var(--lightpurple);
+    font-size: clamp(36px, 4.5vw, 60px);
     font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
 
+.homeContainer .heroSubtitle {
+    margin: 0;
+    color: #c49aef;
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+}
+
+.homeContainer .purpleText {
     color: var(--lightpurple);
 }
 
-.heroSubtitle {
-    color: black;
-    font-size: 45px;
-    font-weight: 700;
-}
-
-.purpleText {
-    color: var(--lightpurple);
-}
-
-.greenText {
+.homeContainer .greenText {
     color: #63e04b;
 }
 
-/* Responsive */
-
-@media only screen and (max-width: 1270px) {
-    div.heroContainer {
-        flex-direction: column;
-        gap: 45px;
-    }
-    div.heroTextContainer {
-        width: 70%;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-    h1.heroTitle {
-        font-size: 60px;
-    }
+.homeContainer .heroContainer .image {
+    width: 100%;
+    height: auto;
+    min-width: 0;
 }
 
-@media only screen and (max-width: 700px) {
-    h1.heroTitle {
-        font-size: 40px;
+@media (max-width: 1000px) {
+    .homeContainer .heroContainer {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
     }
-    h1.heroSubtitle {
-        font-size: 35px;
+
+    .homeContainer .heroTextContainer {
+        align-items: center;
+        max-width: 640px;
+        justify-self: center;
+        text-align: center;
+    }
+
+    .homeContainer .heroContainer .image {
+        max-width: 560px;
+        justify-self: center;
     }
 }

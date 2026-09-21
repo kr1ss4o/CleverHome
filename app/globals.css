@@ -20,7 +20,7 @@ body {
 
 /* Design class for the main page design */
 
-.mainPageContainer {
+main.mainPageContainer {
     padding: 120px 90px;
     display: flex;
     flex-direction: column;

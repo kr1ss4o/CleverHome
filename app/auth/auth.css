@@ -1,0 +1,160 @@
+/* Shared login and registration design */
+main.mainPageContainer.authContainer {
+    min-height: 100dvh;
+    padding: 150px 24px 60px;
+    justify-content: center;
+    gap: 0;
+}
+
+.authContainer .authPanel {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: min(100%, 540px);
+    min-width: 0;
+    padding: 40px;
+    background: linear-gradient(145deg, rgba(34, 19, 59, 0.78), rgba(17, 10, 30, 0.88));
+    border: 1px solid rgba(174, 112, 255, 0.22);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+}
+
+.authContainer .authHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.authContainer .authHeader h1 {
+    margin: 0;
+    color: var(--lightpurple);
+    font-size: clamp(30px, 4vw, 40px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+}
+
+.authContainer .authHeader p {
+    margin: 0;
+    color: #b999d8;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.authContainer .authFields {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.authContainer .authField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.authContainer .authField label {
+    color: #c49aef;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.authContainer .authField input {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 54px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.45);
+    color: #d7b6fa;
+    border: 1px solid rgba(174, 112, 255, 0.18);
+    border-radius: 10px;
+    outline: none;
+    font: inherit;
+    font-size: 16px;
+    color-scheme: dark;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.authContainer .authField input::placeholder {
+    color: #9c80b8;
+    font-size: 14px;
+}
+
+.authContainer .authField input:focus {
+    border-color: var(--lightpurple);
+    box-shadow: 0 0 0 3px rgba(174, 112, 255, 0.12);
+}
+
+.authContainer .authButton {
+    width: 100%;
+    min-height: 54px;
+    padding: 12px 20px;
+    background: var(--lightpurple);
+    color: #160b25;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.authContainer .authButton:hover {
+    background: #bc88ff;
+}
+
+.authContainer .authExtras {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 16px;
+    padding-top: 22px;
+    color: #b999d8;
+    border-top: 1px solid rgba(174, 112, 255, 0.15);
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.authContainer .authExtras a {
+    color: var(--lightpurple);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.authContainer .authExtras a:hover {
+    color: #d7b6fa;
+}
+
+.authContainer .authButton:focus-visible,
+.authContainer .authExtras a:focus-visible {
+    outline: 2px solid var(--lightpurple);
+    outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+    main.mainPageContainer.authContainer {
+        padding: 112px 16px 32px;
+    }
+
+    .authContainer .authPanel {
+        padding: 28px 24px;
+        gap: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .authContainer .authField input,
+    .authContainer .authButton {
+        transition: none;
+    }
+}

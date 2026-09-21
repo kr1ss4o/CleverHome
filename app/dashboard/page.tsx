@@ -180,7 +180,7 @@ export default function Dashboard() {
     }
 
     return (
-        <main className="mainPageContainer">
+        <main className="mainPageContainer dashboardContainer">
 
             {/* Dashboard header */}
             <div className="dashHead">

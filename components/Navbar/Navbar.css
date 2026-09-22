@@ -37,7 +37,8 @@ nav.navbarBody {
     gap: 2px;
 }
 
-.navbarBody .groupButtons a {
+.navbarBody .groupButtons a,
+.navbarBody .groupButtons button {
     display: grid;
     place-items: center;
     width: 44px;
@@ -45,7 +46,15 @@ nav.navbarBody {
     border-radius: 50%;
 }
 
-.navbarBody .groupButtons a:focus-visible {
+.navbarBody .groupButtons button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.navbarBody .groupButtons a:focus-visible,
+.navbarBody .groupButtons button:focus-visible {
     outline: 2px solid var(--purpleblue);
     outline-offset: 2px;
 }

@@ -20,8 +20,8 @@ export default function Footer() {
                     <nav className="footerSection" aria-labelledby="footer-account">
                         <h2 id="footer-account" className="footerTitle">Account access</h2>
                         <ul className="footerLinks">
-                            <li><Link href="/auth/login">Log in</Link></li>
-                            <li><Link href="/auth/register">Create an account</Link></li>
+                            <li><Link href="/login">Log in</Link></li>
+                            <li><Link href="/register">Create an account</Link></li>
                             <li><Link href="/reset-password">Reset password</Link></li>
                         </ul>
                     </nav>

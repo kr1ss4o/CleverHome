@@ -105,12 +105,24 @@ main.mainPageContainer.accountContainer {
 }
 
 .accountContainer .accountIcon {
+    display: grid;
+    place-items: center;
     width: 150px;
     height: 150px;
     background: rgba(174, 112, 255, 0.08);
     border: 1px solid rgba(174, 112, 255, 0.5);
     border-radius: 50%;
     box-shadow: 0 0 40px rgba(174, 112, 255, 0.08);
+}
+
+.accountContainer .accountIcon svg {
+    width: 76%;
+    height: 76%;
+    fill: none;
+    stroke: var(--lightpurple);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 4;
 }
 
 /* Fields */

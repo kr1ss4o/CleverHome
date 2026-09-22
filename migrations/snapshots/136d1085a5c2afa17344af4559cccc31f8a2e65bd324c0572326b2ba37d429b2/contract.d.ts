@@ -34,7 +34,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'d1e2f1857cf07658e50eb65eec1a2bcf9358d24ce89ac908eefc80534f41783c'>;
+  StorageHashBase<'136d1085a5c2afa17344af4559cccc31f8a2e65bd324c0572326b2ba37d429b2'>;
 export type ExecutionHash = ExecutionHashBase<string>;
 export type ProfileHash =
   ProfileHashBase<'3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2'>;
@@ -249,7 +249,7 @@ export type FieldOutputTypes = {
       readonly color: CodecTypes['pg/text@1']['output'] | null;
       readonly rpm: CodecTypes['pg/int4@1']['output'] | null;
       readonly temperature: CodecTypes['pg/float8@1']['output'] | null;
-      readonly userId: CodecTypes['pg/int4@1']['output'];
+      readonly userId: CodecTypes['pg/int4@1']['output'] | null;
     };
     readonly User: {
       readonly id: CodecTypes['pg/int4@1']['output'];
@@ -270,7 +270,7 @@ export type FieldInputTypes = {
       readonly color: CodecTypes['pg/text@1']['input'] | null;
       readonly rpm: CodecTypes['pg/int4@1']['input'] | null;
       readonly temperature: CodecTypes['pg/float8@1']['input'] | null;
-      readonly userId: CodecTypes['pg/int4@1']['input'];
+      readonly userId: CodecTypes['pg/int4@1']['input'] | null;
     };
     readonly User: {
       readonly id: CodecTypes['pg/int4@1']['input'];
@@ -291,7 +291,7 @@ export type StorageColumnTypes = {
       readonly state: CodecTypes['pg/bool@1']['output'];
       readonly temperature: CodecTypes['pg/float8@1']['output'] | null;
       readonly type: CodecTypes['pg/text@1']['output'];
-      readonly userId: CodecTypes['pg/int4@1']['output'];
+      readonly userId: CodecTypes['pg/int4@1']['output'] | null;
     };
     readonly user: {
       readonly createdAt: CodecTypes['pg/timestamptz-temporal@1']['output'];
@@ -312,7 +312,7 @@ export type StorageColumnInputTypes = {
       readonly state: CodecTypes['pg/bool@1']['input'];
       readonly temperature: CodecTypes['pg/float8@1']['input'] | null;
       readonly type: CodecTypes['pg/text@1']['input'];
-      readonly userId: CodecTypes['pg/int4@1']['input'];
+      readonly userId: CodecTypes['pg/int4@1']['input'] | null;
     };
     readonly user: {
       readonly createdAt: CodecTypes['pg/timestamptz-temporal@1']['input'];
@@ -333,8 +333,8 @@ export namespace Models {
     color: CodecTypes['pg/text@1']['output'] | null;
     rpm: CodecTypes['pg/int4@1']['output'] | null;
     temperature: CodecTypes['pg/float8@1']['output'] | null;
-    userId: CodecTypes['pg/int4@1']['output'];
-    user: public_User;
+    userId: CodecTypes['pg/int4@1']['output'] | null;
+    user: public_User | null;
     readonly [RelationKeys]?: 'user';
   };
   export type public_User = {
@@ -421,7 +421,7 @@ type ContractBase = Omit<
                 readonly userId: {
                   readonly nativeType: 'int4';
                   readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
+                  readonly nullable: true;
                 };
               };
               primaryKey: { readonly columns: readonly ['id'] };
@@ -536,7 +536,7 @@ type ContractBase = Omit<
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/float8@1' };
               };
               readonly userId: {
-                readonly nullable: false;
+                readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
               };
             };
@@ -544,7 +544,7 @@ type ContractBase = Omit<
               readonly user: {
                 readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'User' };
                 readonly cardinality: 'N:1';
-                readonly nullable: false;
+                readonly nullable: true;
                 readonly on: {
                   readonly localFields: readonly ['userId'];
                   readonly targetFields: readonly ['id'];

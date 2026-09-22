@@ -1,10 +1,5 @@
 import db from "@/lib/db";
-
-export async function GET() {
-    const devices = await db.orm.public.Device.all();
-
-    return Response.json(devices);
-}
+import { getCurrentUserId } from "@/lib/auth";
 
 type DeviceDataType = {
     name: string,
@@ -14,12 +9,41 @@ type DeviceDataType = {
     rpm?: number,
     temperature?: number
 }
+
+export async function GET() {
+
+    const userId = await getCurrentUserId();
+
+    if (!userId) {
+        return Response.json(
+            { error: "Not authenticated." },
+            { status: 401 }
+        );
+    }
+
+    const devices = await db.orm.public.Device.where(
+        { userId: userId }
+    ).all();
+
+    return Response.json(devices);
+}
+
 export async function POST(request: Request) {
+
+    const userId = await getCurrentUserId();
+
+    if (!userId) {
+        return Response.json(
+            { error: "Not authenticated." },
+            { status: 401 }
+        )
+    }
 
     // The data sent by the request is converted into json from json text
     const data: DeviceDataType = await request.json();
 
     const device = await db.orm.public.Device.create({
+        userId: userId,
         name: data.name,
         type: data.type,
         color: data.color,
@@ -27,9 +51,11 @@ export async function POST(request: Request) {
         temperature: data.temperature
     });
 
-    return Response.json(device);
+    return Response.json(device, { status: 201 });
 }
+
 export async function PUT(request: Request) {
+    
     const data = await request.json();
 
     const updateData: {
@@ -61,6 +87,7 @@ export async function PUT(request: Request) {
 
     return Response.json(device);
 }
+
 export async function DELETE(request: Request) {
     const data = await request.json();
 

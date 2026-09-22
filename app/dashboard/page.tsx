@@ -28,6 +28,10 @@ export default function Dashboard() {
             const response = await fetch("/api/devices");
             const data = await response.json();
 
+            if (!response.ok) {
+                return;
+            }
+
             // Sort the devices by ID
             const sortedDevices = [...data].sort((a, b) => a.id - b.id);
             setDevices(sortedDevices);
@@ -110,6 +114,11 @@ export default function Dashboard() {
                     type: type
             })
         });
+
+        // Check if the request has been successful
+        if (!response.ok) {
+            return;
+        }
 
         const newDevice = await response.json();
 
@@ -202,7 +211,13 @@ export default function Dashboard() {
             {/* Device list */}
             <div className="devicesContainer">
 
-                {devices.map((device) => (
+            {devices.length === 0 ? (
+                <div className="emptyDevices">
+                    <h2>No devices yet</h2>
+                    <p>Add a device to start controlling your home.</p>
+                </div>
+            ) : (
+                devices.map((device) => (
                     <DeviceCard
                         key={device.id}
                         deviceID={device.id}
@@ -216,10 +231,11 @@ export default function Dashboard() {
                         openEditModal={openEditModal}
                         currentDeviceName={currentDeviceName}
                         deleteDevice={deleteDevice}
-                    />                  
-                ))}
-
-            </div>
+                    />
+                ))
+            )}
+        
+        </div>
 
 
             {/* New Device modal */}

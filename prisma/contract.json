@@ -264,6 +264,7 @@
               },
               "foreignKeys": [
                 {
+                  "onDelete": "cascade",
                   "source": {
                     "columns": [
                       "userId"
@@ -354,7 +355,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "d1e2f1857cf07658e50eb65eec1a2bcf9358d24ce89ac908eefc80534f41783c"
+    "storageHash": "3da9f48a797c3b19774b173e20e57e0b7ea298d292288c9cca2c1bd0d6e5f5b0"
   },
   "capabilities": {
     "postgres": {

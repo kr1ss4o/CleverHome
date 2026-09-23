@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "@/components/Dashboard/Device/DeviceCard.css";
 
@@ -11,6 +11,16 @@ type DeviceProps = {
     deviceType: string;
     deviceRPM: number | null;
     deviceTemperature: number | null;
+    
+    simulation?: {
+    brightness?: number;
+    powerConsumption?: number;
+    rpm?: number;
+    temperature?: number;
+    currentTemperature?: number;
+    targetTemperature?: number;
+    heating?: boolean;
+    };
 
     toggleDevice: (id: number) => void;
     updateDeviceValue: (
@@ -24,6 +34,30 @@ type DeviceProps = {
     deleteDevice: (id: number) => void;
 };
 
+function useAnimatedValue(targetValue: number) {
+    const [displayedValue, setDisplayedValue] = useState(targetValue);
+
+    useEffect(() => {
+        const animation = window.setInterval(() => {
+            setDisplayedValue((currentValue) => {
+                const difference = targetValue - currentValue;
+
+                if (Math.abs(difference) < 1) {
+                    window.clearInterval(animation);
+                    return targetValue;
+                }
+
+                const step = Math.max(1, Math.round(Math.abs(difference) * 0.12));
+                return currentValue + Math.sign(difference) * Math.min(step, Math.abs(difference));
+            });
+        }, 40);
+
+        return () => window.clearInterval(animation);
+    }, [targetValue]);
+
+    return displayedValue;
+}
+
 export default function Device(props: DeviceProps) {
 
     /* Lights values */
@@ -32,6 +66,17 @@ export default function Device(props: DeviceProps) {
     /* Fan input */
     const [inputRPM, setInputRPM] = useState(
         props.deviceRPM ?? 350
+    );
+
+    const targetRPM = props.deviceState ? props.deviceRPM ?? 0 : 0;
+    const displayedRPM = useAnimatedValue(targetRPM);
+    const displayedBrightness = useAnimatedValue(props.simulation?.brightness ?? 0);
+    const displayedPower = useAnimatedValue(props.simulation?.powerConsumption ?? 0);
+    const displayedTemperature = useAnimatedValue(
+        props.simulation?.temperature ?? props.simulation?.currentTemperature ?? 0
+    );
+    const displayedTargetTemperature = useAnimatedValue(
+        props.simulation?.targetTemperature ?? 0
     );
 
     /* Radiator input */
@@ -43,7 +88,6 @@ export default function Device(props: DeviceProps) {
     const [inputThermoTemp, setInputThermoTemp] = useState(
         props.deviceTemperature ?? 20
     );
-
 
     function getDeviceIcon(deviceType: string) {
 
@@ -60,6 +104,10 @@ export default function Device(props: DeviceProps) {
         }
 
         return "/media/devices/thermometer-icon.png";
+    }
+
+    function deviceSimulation() {
+
     }
 
 
@@ -88,6 +136,69 @@ export default function Device(props: DeviceProps) {
                 <h2 className={stateClass + " stateTitle"}>
                     {props.deviceState ? "Online" : "Offline"}
                 </h2>
+            
+                {props.simulation && (
+                    <div className="simulationInfo">
+                        {props.simulation.brightness !== undefined && (
+                            <p>
+                                <span className="simulationLabel">Brightness</span>
+                                <span className="simulationValue">
+                                    {displayedBrightness}%
+                                </span>
+                            </p>
+                        )}
+                    
+                        {props.simulation.powerConsumption !== undefined && (
+                            <p>
+                                <span className="simulationLabel">Power</span>
+                                <span className="simulationValue">
+                                    {displayedPower}W
+                                </span>
+                            </p>
+                        )}
+
+                        {props.simulation.temperature !== undefined && (
+                            <p>
+                                <span className="simulationLabel">Temperature</span>
+                                <span className="simulationValue">
+                                    {displayedTemperature}°C
+                                </span>
+                            </p>
+                        )}
+
+                        {props.simulation.currentTemperature !== undefined && (
+                            <p>
+                                <span className="simulationLabel">Current</span>
+                                <span className="simulationValue">
+                                    {displayedTemperature}°C
+                                </span>
+                            </p>
+                        )}
+
+                        {props.simulation.targetTemperature !== undefined && (
+                            <p>
+                                <span className="simulationLabel">Target</span>
+                                <span className="simulationValue">
+                                    {displayedTargetTemperature}°C
+                                </span>
+                            </p>
+                        )}
+
+                        {props.simulation.heating !== undefined && (
+                            <p>
+                                <span className="simulationLabel">Mode</span>
+                                <span className="simulationValue">
+                                    {!props.deviceState
+                                        ? "Off"
+                                        : props.simulation.heating
+                                            ? "Heating"
+                                            : "Stable"
+                                    }
+                                </span>
+                            </p>
+                        )}
+                    </div>
+                )}
 
                 <div className="manageDevice">
 
@@ -119,12 +230,16 @@ export default function Device(props: DeviceProps) {
             </div>
 
 
-            <div className="deviceDisplayContainer">
+            <div className={
+                `deviceDisplayContainer ${props.deviceState ? "isActive" : ""}`
+            }>
 
-                <img
-                    src={deviceIcon}
-                    className="deviceImage"
-                />
+                <div className="deviceImageFrame">
+                    <img
+                        src={deviceIcon}
+                        className={`deviceImage deviceImage-${props.deviceType}`}
+                    />
+                </div>
 
                 <input
                     type="checkbox"
@@ -167,10 +282,7 @@ export default function Device(props: DeviceProps) {
                 <div className="deviceControlsContainer">
 
                     <h1 className="displayDeviceValue">
-                        {props.deviceState
-                            ? `Current: ${props.deviceRPM ?? 0} RPM`
-                            : "Current: 0 RPM"
-                        }
+                        Current: {displayedRPM} RPM
                     </h1>
 
                     <input

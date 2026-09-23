@@ -17,6 +17,16 @@ export default function Dashboard() {
         color: string | null;
         rpm: number | null;
         temperature: number | null;
+
+        // The more detailed fields which the simulator returns
+        simulation?: {
+            status: string;
+            brightness?: number;
+            powerConsumption?: number;
+            rpm?: number;
+            temperature?: number;
+            heating?: boolean;
+        }
     };
 
     // Devices' state receive an array of Device object
@@ -231,6 +241,7 @@ export default function Dashboard() {
                         openEditModal={openEditModal}
                         currentDeviceName={currentDeviceName}
                         deleteDevice={deleteDevice}
+                        simulation={device.simulation}
                     />
                 ))
             )}

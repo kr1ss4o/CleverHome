@@ -1,5 +1,6 @@
 import db from "@/lib/db";
 import { getCurrentUserId } from "@/lib/auth";
+import { simulateDevice } from "@/lib/simulator";
 
 type DeviceDataType = {
     name: string,
@@ -25,10 +26,15 @@ export async function GET() {
         { userId: userId }
     ).all();
 
-    return Response.json(devices);
+    const devicesWithSimulation = devices.map(device => ({
+        ...device,
+        simulation: simulateDevice(device)
+    }));
+
+    return Response.json(devicesWithSimulation);
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request) { 
 
     const userId = await getCurrentUserId();
 
@@ -55,7 +61,16 @@ export async function POST(request: Request) {
 }
 
 export async function PUT(request: Request) {
-    
+
+    const userId = await getCurrentUserId();
+
+    if (!userId) {
+        return Response.json(
+            { error: "Not authenticated." },
+            { status: 401 }
+        );
+    }
+
     const data = await request.json();
 
     const updateData: {
@@ -81,19 +96,38 @@ export async function PUT(request: Request) {
         updateData.temperature = data.temperature;
     }
 
-    const device = await db.orm.public.Device
-        .where({ id: data.id })
-        .update(updateData);
+    const updatedDevice = await db.orm.public.Device
+    .where({
+        id: data.id,
+        userId: userId
+    })
+    .update(updateData);
 
-    return Response.json(device);
+    return Response.json({
+        ...updatedDevice,
+        simulation: simulateDevice(updatedDevice)
+    });
 }
 
 export async function DELETE(request: Request) {
+
+    const userId = await getCurrentUserId();
+
+    if (!userId) {
+        return Response.json(
+            { error: "Not authenticated." },
+            { status: 401 }
+        );
+    }
+
     const data = await request.json();
 
     const deletedDevice = await db.orm.public.Device
-        .where({ id: data.id })
-        .delete();
+    .where({
+        id: data.id,
+        userId: userId
+    })
+    .delete();
 
     return Response.json(deletedDevice);
 }

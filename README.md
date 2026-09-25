@@ -1,36 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CleverHome
 
-## Getting Started
+CleverHome is a full-stack smart home web application built as a
+learning project. It allows users to create an account, add simulated
+smart home devices, control them through a dashboard, and view simulated
+device information.
 
-First, run the development server:
+The project was created to learn and practise **React, Next.js,
+TypeScript, backend development, database integration, and
+component-based development**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+-   User registration and login
+-   Session-based authentication
+-   Personal device management
+-   Add, edit, and delete devices
+-   Device on/off controls
+-   Light colour control
+-   Fan RPM control
+-   Radiator temperature control
+-   Thermostat temperature control
+-   Digital smart device simulation
+-   Simulated brightness, power consumption, RPM, temperature, and
+    heating state
+-   PostgreSQL data storage
+-   Responsive interface for desktop and mobile
+
+## Supported Devices
+
+  Device       Controls / Information
+  ------------ -----------------------------------------------
+  Light        On/off, colour, brightness, power consumption
+  Fan          On/off, RPM, power consumption
+  Radiator     On/off, temperature, heating state
+  Thermostat   Temperature control and simulated behaviour
+
+## Technologies
+
+-   **React** -- interactive UI and reusable components
+-   **Next.js** -- application framework and API routes
+-   **TypeScript** -- type-safe development
+-   **PostgreSQL** -- relational database
+-   **Prisma ORM** -- database communication
+-   **bcrypt** -- password hashing
+-   **CSS** -- application styling
+
+## Running the Project Locally
+
+This project is intended to be run locally and is **not deployed as a
+production application**.
+
+### Requirements
+
+Make sure you have installed:
+
+-   Node.js
+-   npm
+-   PostgreSQL
+
+### 1. Clone the repository
+
+``` bash
+git clone https://github.com/kr1ss4o/clever-home-app.git
+cd clever-home-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+``` bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Configure environment variables
 
-## Learn More
+Create the required environment file in the project root and add your
+local PostgreSQL connection string.
 
-To learn more about Next.js, take a look at the following resources:
+For example:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+``` env
+DATABASE_URL="your-postgresql-connection-string"
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Do not commit your environment file or any passwords/secrets to GitHub.
 
-## Deploy on Vercel
+### 4. Run the project setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project includes a setup script for preparing the local development
+environment:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+``` bash
+npm run setup
+```
+
+### 5. Start the development server
+
+``` bash
+npm run dev
+```
+
+Open `http://localhost:3000` in your browser.
+
+## Simulation
+
+CleverHome uses a digital simulator instead of physical smart home
+hardware.
+
+The simulator is integrated with the application and generates
+additional values based on the current device state. This allows the
+project to demonstrate smart home behaviour while keeping the project
+completely software-based.
+
+The simulator currently supports:
+
+-   Light behaviour
+-   Fan behaviour
+-   Radiator behaviour
+-   Thermostat behaviour
+
+## Development Approach
+
+The project was developed independently with a focus on learning React
+and Next.js through practical implementation.
+
+The development process included:
+
+1.  Analysing the project requirements
+2.  Creating the UI/UX prototype in Figma
+3.  Implementing the frontend
+4.  Connecting the backend and database
+5.  Implementing authentication
+6.  Creating the device simulator
+7.  Testing and improving the application
+
+## Project Documentation
+
+The project documentation covers the complete development process:
+
+-   Analysis
+-   Advice
+-   Design
+-   Realisation
+-   Validation
+-   Project Organisation
+-   Communication and Reporting
+-   Exploratory Research
+-   Personal Leadership
+
+## Repository
+
+[GitHub Repository](https://github.com/kr1ss4o/clever-home-app)
+
+## Author
+
+Developed as a Fontys ICT project.

@@ -82,8 +82,6 @@ For example:
 DATABASE_URL="your-postgresql-connection-string"
 ```
 
-Do not commit your environment file or any passwords/secrets to GitHub.
-
 ### 4. Run the project setup
 
 The project includes a setup script for preparing the local development
